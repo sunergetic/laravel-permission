@@ -1,5 +1,5 @@
 {
-    "name": "spatie/laravel-permission",
+    "name": "sunergetic/laravel-permission",
     "description": "Permission handling for Laravel 8.0 and up",
     "license": "MIT",
     "keywords": [
@@ -26,12 +26,19 @@
         "illuminate/auth": "^8.0|^9.0|^10.0",
         "illuminate/container": "^8.0|^9.0|^10.0",
         "illuminate/contracts": "^8.0|^9.0|^10.0",
-        "illuminate/database": "^8.0|^9.0|^10.0"
+        "illuminate/database": "^8.0|^9.0|^10.0",
+        "sunergetic/entrust": "^1.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0|^7.0|^8.0",
         "phpunit/phpunit": "^9.4"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:sunergetic/entrust.git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {

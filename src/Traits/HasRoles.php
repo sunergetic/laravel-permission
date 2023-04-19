@@ -2,6 +2,7 @@
 
 namespace Spatie\Permission\Traits;
 
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Arr;
@@ -9,10 +10,12 @@ use Illuminate\Support\Collection;
 use Spatie\Permission\Contracts\Permission;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\PermissionRegistrar;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 trait HasRoles
 {
     use HasPermissions;
+    use EntrustUserTrait;
 
     private ?string $roleClass = null;
 
@@ -31,6 +34,11 @@ trait HasRoles
             }
             app(PermissionRegistrar::class)->teams = $teams;
         });
+    }
+
+    public function can($abilities, $arguments = []): bool
+    {
+        return app(Gate::class)->forUser($this)->check($abilities, $arguments);
     }
 
     public function getRoleClass(): string
